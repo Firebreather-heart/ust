@@ -14,7 +14,7 @@ class Article(models.Model):
     title = models.CharField(max_length=1000)
     body = models.CharField(max_length=100000000000)
     date = models.DateTimeField(default= datetime.now)
-    imgIllustration = models.ImageField(upload_to='images/',blank=True,null=True)
+    imgIllustration = models.ImageField(upload_to='media/',blank=True,null=True)
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
 
     def __str__(self) -> str:

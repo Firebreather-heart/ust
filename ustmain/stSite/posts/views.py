@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView,DeleteView,CreateView
+from django.views.generic import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from .models import Article,Comment
 from django import forms
+
 # Create your views here.
 class CustomCreateView(CreateView):
     class Meta:
@@ -12,19 +14,23 @@ class CustomCreateView(CreateView):
             'title':forms.TextInput(attrs={
                 'placeholder':'Title','class':'w3-input','type':'text'
             }),
-            'body':forms.TextInput(attrs={
+            'body':forms.Textarea(attrs={
                 'placeholder':'Body','class':'w3-input','type':'text'
             }),
             'comment':forms.TextInput(attrs={
                 'placeholder':'Comment','class':'w3-input','type':'text'
             })
         }
-        
 
 def display(request):
     if request.method == 'GET':
         img = Article.objects.order_by('-date')
         return render(request,'home.html',{'illustration':img})
+
+class SearchResultsListView(ListView): 
+    model = Article
+    context_object_name = 'post_list'
+    template_name = 'search_results.html'
 
 class ArticleUpdateView(LoginRequiredMixin,UpdateView):
     model = Article

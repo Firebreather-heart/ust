@@ -10,16 +10,18 @@
             <a class="w3-btn w3-right w3-purple w3-hover-purple w3-round" href="{% url 'article_create' %}">Share</a></p>
     </div>
 {% endif %}
-<div class="w3-container">
-    {% for article in illustration %}
-        <div class="w3-card">
+{% for article in illustration %}
+<div class="w3-content w3-card w3-margin-bottom">
+        <div class="w3-content">
             <div class="w3-card w3-padding w3-purple">
-                <span class="w3-text-white w3-xxxlarge">{{ article.title }}</span>
+                <span class="w3-text-white w3-xxxlarge" autocapitalize="words">{{ article.title }}</span>
                 <span class="w3-xlarge">-by {{ article.author }}</span>
                 <span class="w3-right">{{ article.date }}</span>
             </div>
             <div class="w3-display-container">
-                <img src="{{ article.imgIllustration.url }}" class="w3-padding w3-margin-left w3-center" alt="" width="90%" style="max-width: 90%;"/>
+                {% if article.imgIllustration %}
+                <img src="{{ article.imgIllustration.url }}" class="w3-padding w3-margin-left w3-display-center" alt="" width="90%" style="max-width: 90%;"/>
+                {% endif %}
             </div>
             <div class="w3-card w3-padding-64 w3-margin-right w3-margin-left w3-round w3-light-grey">
                 <p class="w3-margin-left w3-margin right">{{ article.body }}</p>
@@ -35,9 +37,9 @@
                 {% endfor %}
             </div>
         </div>
-    {% endfor %}
 </div>
-<div class="w3-padding-64 w3-light-grey w3-small">
+{% endfor %}
+<div class="w3-padding-64 w3-light-grey w3-small w3-margin">
     <div class="w3-row-padding">
         <div class="w3-col s4">
             <h3>CONTACT US</h3>

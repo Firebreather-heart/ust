@@ -1,1 +1,16 @@
-ÿþ
+{% extends 'base.html' %}
+{% block title %}Log In{% endblock title %}
+{% block content %}
+{% load static %} 
+<h2 class="w2-card-4 w3-text-purple">Log In</h2>
+<form method="post" class="w3-container">
+    {% csrf_token %}
+    <label class="w3-text-purple">Username</label>
+    <input type="text"  name="login" class="w3-input w3-border">
+
+    <label class="w3-text-purple">Password</label>
+    <input type="password" name="password"  class="w3-input w3-border">
+
+    <button class="w3-btn w3-purple w3-round-large w3-margin-top w3-border" type="submit">Log In</button>
+</form>
+{% endblock content %}

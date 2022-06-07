@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% block title %}Search{% endblock title %}
+{% block content %}
+<h1>Search Results</h1>
+{% for article illustration %}
+<div class="w3-content">
+    <div class="w3-card w3-padding w3-purple">
+        <span class="w3-text-white w3-xxxlarge" autocapitalize="words">{{ article.title }}</span>
+        <span class="w3-xlarge">-by {{ article.author }}</span>
+        <span class="w3-right">{{ article.date }}</span>
+    </div>
+    <div class="w3-display-container">
+        <img src="{{ article.imgIllustration.url }}" class="w3-padding w3-margin-left w3-center" alt="" width="90%" style="max-width: 90%;"/>
+    </div>
+    <div class="w3-card w3-padding-64 w3-margin-right w3-margin-left w3-round w3-light-grey">
+        <p class="w3-margin-left w3-margin right">{{ article.body }}</p>
+    </div>
+    <div>
+        {% for comment in article.comments.all %} 
+            <div>
+                {{ comment.author }}
+            </div>
+            <div>
+                {{ comment.comment }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

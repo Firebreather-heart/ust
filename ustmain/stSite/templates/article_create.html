@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% load static %} 
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+<div class="w3-content">
+    <form method="post" class="w3-main" style="max-width: 70%;">
+        <div class="w3-purple w3-round w3-margin-bottom w3-padding"><caption class="">share your thoughts with everyone</caption></div>
+        <fieldset class="w3-container w3-border-purple w3-round">
+            {% csrf_token %}
+            <label class="w3-text-purple">Give your write-up a caption</label>
+            <input type="text" name="title" id="title" class="w3-input w3-border-purple w3-round">
+
+            <label class="w3-text-purple">Body</label>
+            <input type="text" name="body" id="body" class="w3-input w3-border-purple w3-round">
+
+            <label class="w3-text-purple w3-margin-top">Add Header image</label>
+            <br>
+            <input type="file" name="imgillustration" id="imgillustration">  <br>
+
+            <button type="submit" class="w3-margin-top w3-margin-bottom w3-button w3-purple w3-hover-purple">Post</button>
+        </fieldset>
+    </form>
+</div>
+{% endblock content %}

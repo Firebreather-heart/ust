@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView,DeleteView,CreateView
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
@@ -27,10 +27,14 @@ def display(request):
         img = Article.objects.order_by('-date')
         return render(request,'home.html',{'illustration':img})
 
-class SearchResultsListView(ListView): 
-    model = Article
-    context_object_name = 'post_list'
-    template_name = 'search_results.html'
+def search_product(request):
+    if request.method == "POST":
+        query_name = request.POST.get('name', None)
+        if query_name:
+            results = Article.objects.filter(name__contains=query_name)
+            return render(request, 'search_results.html', {"results":results})
+
+    return render(request, 'search_results.html')
 
 class ArticleUpdateView(LoginRequiredMixin,UpdateView):
     model = Article
@@ -73,3 +77,9 @@ class CommentView(LoginRequiredMixin,CustomCreateView):
     fields =('comment',)
     success_url = reverse_lazy('home')
     login_url = 'account_login'
+
+class ArticleDetailView(LoginRequiredMixin,CustomCreateView):
+    model = Article
+    template_name = 'article_detail.html'
+    login_url = 'account_login'
+    context_object_name = 'article_detail'

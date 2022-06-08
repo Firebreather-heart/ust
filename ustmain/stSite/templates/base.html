@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UST</title>
     {% load static %}
+    {% load socialaccount %}
     <link rel="stylesheet" href="{% static 'css/w3.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
@@ -23,6 +24,7 @@
             {% else %} 
                 <p><b>you are not logged in</b></p>
                 <p>  <a href="{% url 'account_login' %}" class="w3-btn  w3-purple w3-round-large">Log in</a></p>
+                <a href="{% provider_login_url 'google' %}"  class="w3-btn  w3-purple w3-round-large">Login With Google</a>
                 <p> <a href="{% url 'account_signup' %}" class="w3-btn  w3-purple w3-round-large">Sign up</a></p>
             {% endif %}
         </div>

@@ -20,7 +20,7 @@
         </div>
         <div class="w3-card w3-padding "><a >
                     <p class=" w3-xxxlarge">{{ article.title }}</p>
-                    <p class="w3-large">-by {{ article.author }} <button class="w3-btn w3-purple w3-right">Read more</button></p>
+                    <p class="w3-large">-by {{ article.author }} <a href="{% url 'article_detail' article.pk %}" class="w3-btn w3-purple w3-right">Read more</a></p>
                 </a>
         </div>
             

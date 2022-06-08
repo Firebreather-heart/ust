@@ -73,12 +73,13 @@ class ArticleCreateView(LoginRequiredMixin,CustomCreateView):
 
 class CommentView(LoginRequiredMixin,CustomCreateView):
     model = Comment 
-    template_name = 'home.html'
+    template_name = 'comment.html'
     fields =('comment',)
     success_url = reverse_lazy('home')
     login_url = 'account_login'
+    context_object_name = 'comment'
 
-class ArticleDetailView(LoginRequiredMixin,CustomCreateView):
+class ArticleDetailView(LoginRequiredMixin,DetailView):
     model = Article
     template_name = 'article_detail.html'
     login_url = 'account_login'

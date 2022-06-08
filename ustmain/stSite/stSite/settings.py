@@ -173,7 +173,7 @@ DEFAULT_FROM_EMAIL = 'admin@usm.com'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_REDIRECT_URL = 'http://localhost:9999/accounts/google/login/callback/'
+LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 ACCOUNT_SESSION_REMEMBER = True

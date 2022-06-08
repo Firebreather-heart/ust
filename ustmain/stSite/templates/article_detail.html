@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}{{article_detail.title}}{% endblock title %}
+{% block content %}
+{% load static %}
+<div class=" w3-card-4 w3-margin-bottom w3-border w3-round-large ">
+    <div class="w3-display-container w3-text-white w3-center">
+            {% if article_detail.imgIllustration %}
+            <img src="{{ article_detail.imgIllustration.url }}" class="" alt="" width="100%" style="max-width: 1200px;"/>
+            {% endif %}
+            <div class="w3-xlarge w3-display-bottomleft w3-padding">{{ article_detail.date }}</div>
+    </div>
+    <div class="w3-card w3-padding "><a >
+                <p class=" w3-xxxlarge" >{{ article_detail.title }}</p>
+                <p class="w3-xlarge">by {{ article_detail.author }}</p>
+                <p class="w3-large">{{ article_detail.body }}</p>
+            </a>
+    </div>
+    <div class="w3-card w3-purple w3-round w3-padding w3-margin w3-text-white w3-xlarge">Comments</div>
+    {% for comment in article_detail.comment.all %}
+    <div class="w3-card w3-padding w3-margin-top  w3-round" style="border-color: purple;border-width: 50px;">
+        <p class="w3-xxlarge" style="text-transform:capitalize;">{{ comment.author}}</p>
+        <p class="w3-xlarge">{{ comment.comment }}</p>
+    </div>
+    {% endfor %} 
+    </div>
+</div>
+{% endblock content %}

@@ -11,7 +11,7 @@
     </div>
 {% endif %}
 {% for article in illustration %}
-<div class=" w3-card-4 w3-margin-bottom w3-border w3-round-large ">
+<div class=" w3-content w3-margin-bottom w3-border w3-round-large "  style="max-width: 1200px;">
         <div class="w3-display-container w3-text-white w3-center">
                 {% if article.imgIllustration %}
                 <img src="{{ article.imgIllustration.url }}" class="" alt="" width="100%" style="max-width: 1200px;"/>
@@ -20,7 +20,7 @@
         </div>
         <div class="w3-card w3-padding "><a >
                     <p class=" w3-xxxlarge">{{ article.title }}</p>
-                    <p class="w3-large">-by {{ article.author }} <a href="{% url 'article_detail' article.pk %}" class="w3-btn w3-purple w3-right">Read more</a></p>
+                    <p class="w3-large">-by {{ article.author }} <a href="{% url 'article_detail' article.pk %}" class="w3-btn w3-round w3-purple w3-right">Read more</a></p>
                 </a>
         </div>
             

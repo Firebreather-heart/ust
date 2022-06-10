@@ -30,7 +30,10 @@ class Comment(models.Model):
             related_name='comment',
     )
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    date = models.DateTimeField(default= datetime.now)
     comment = models.CharField(max_length=10000)
 
     def __str__(self) -> str:
         return self.comment
+    def get_absolute_url(self): 
+        return reverse('comment', args=[str(self.id)])

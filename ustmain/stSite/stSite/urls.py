@@ -18,9 +18,10 @@ from django.urls import path,include
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('kurios/', admin.site.urls),
     path('',include('posts.urls')),
     path('pages/',include('pages.urls')),
+    path('library/',include('library.urls')),
     path('accounts/', include('allauth.urls')),
 ]
 from django.conf import settings

@@ -1,30 +1,26 @@
-{% extends '_base.html' %}
+{% extends 'base.html' %}
 {% block title %}Search{% endblock title %}
 {% block content %}
-<h1>Search Results</h1>
-{% for article illustration %}
-<div class="w3-content">
-    <div class="w3-card w3-padding w3-purple">
-        <span class="w3-text-white w3-xxxlarge" autocapitalize="words">{{ article.title }}</span>
-        <span class="w3-xlarge">-by {{ article.author }}</span>
-        <span class="w3-right">{{ article.date }}</span>
-    </div>
-    <div class="w3-display-container">
-        <img src="{{ article.imgIllustration.url }}" class="w3-padding w3-margin-left w3-center" alt="" width="90%" style="max-width: 90%;"/>
-    </div>
-    <div class="w3-card w3-padding-64 w3-margin-right w3-margin-left w3-round w3-light-grey">
-        <p class="w3-margin-left w3-margin right">{{ article.body }}</p>
-    </div>
-    <div>
-        {% for comment in article.comments.all %} 
-            <div>
-                {{ comment.author }}
-            </div>
-            <div>
-                {{ comment.comment }}
-            </div>
-        {% endfor %}
-    </div>
+{% if results %}
+<h1 class="w3-padding w3-text-purple">Search Results</h1>
+{% for result in results %}
+<div class="w3-content w3-padding">
+    <div class=" w3-content w3-margin-bottom w3-border w3-round-large "  style="max-width: 1200px;">
+        <div class="w3-display-container w3-text-white w3-center">
+                {% if result.imgIllustration %}
+                <img src="{{ result.imgIllustration.url }}" class="" alt="" width="100%" style="max-width: 1200px;"/>
+                {% endif %}
+                <div class="w3-xlarge w3-display-bottomleft w3-padding">{{ result.date }}</div>
+        </div>
+        <div class="w3-card w3-padding "><a >
+                    <p class=" w3-xxxlarge">{{ result.title }}</p>
+                    <p class="w3-large">-by {{ result.author }} <a href="{% url 'article_detail' result.pk %}" class="w3-btn w3-purple w3-right">Read more</a></p>
+                </a>
 </div>
 {% endfor %}
+{% else %} 
+<p class="w3-card-4 w3-padding w3-text-red w3-xxlarge">No results found</p>
+{% endif %}
+    
+</div>
 {% endblock content %}

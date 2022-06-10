@@ -16,9 +16,7 @@
             <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
             {% if user.is_authenticated %} 
                 <p><b>Calvary greetings {{ user.username }}</b> </p>
-                <p><a href="" class=" w3-btn w3-purple w3-round">Discussion</a></p>
-                <p><a href="" class=" w3-btn w3-purple w3-round ">Library</a></p>
-                <p><a href="" class="w3-btn w3-purple w3-round ">Bible Study</a></p>
+                <p><a href="{% url 'library' %}" class=" w3-btn w3-purple w3-round ">Library</a></p>
                 <p><a href="" class="w3-btn w3-purple w3-round ">About</a></p>
                 <a href="{% url 'account_logout' %}" class="w3-btn w3-purple  w3-round-large">Log out</a>
             {% else %} 
@@ -32,19 +30,25 @@
           <div class="w3-purple w3-round">
             <button class="w3-button w3-purple w3-border w3-border-white w3-xlarge w3-right w3-hide-large" onclick="w3_open()">&#9776;</button>
             <div class="w3-bar">
-              <div class="w3-image w3-bar-item"><img src="{% static 'images/logo.jpg' %}" alt="" class="w3-circle" width="100px"></div>
+              <div class="w3-image w3-bar-item"><a href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" alt="" class="w3-circle" width="100px"></a></div>
               <h1 class="w3-bar-item w3-xxxlarge"><b>Ultimate Salvation Ministries</b></h1>
               <p><h3 class="w3-animate-fading w3-bar-item">Holiness Unto The Lord</h3></p>
+              <div class="w3-bar-item w3-mobile"><form action="{% url 'search' %}" method="get">
+                {% csrf_token %}
+                <input type="search" class="w3-input w3-border w3-round-large" style="width:100%;" name="q" id="id_q" placeholder="search">
+              </form></div>
+              
             </div>
           </div>
       </div>
-    <div class="w3-content  w3-margin-top" style="max-width: 1200px;" >
+    <div class="w3-content" style="max-width: 1200px;" >
         {% block content %}
         {% endblock content %}
     </div>
     <script>
         function w3_open() {
           document.getElementById("mySidebar").style.display = "block";
+          document.getElementById("mySidebar").style.width = "50%";
         }
         
         function w3_close() {

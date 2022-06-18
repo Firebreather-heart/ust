@@ -8,7 +8,7 @@ from django import forms
 # Create your views here.
 class CustomCreateView(CreateView):
     class Meta:
-        widgets ={
+        widget ={
             'bookname':forms.TextInput(attrs={
                 'placeholder':'bookname','class':'w3-input','type':'text','id':'bookname','name':'bookname',
             }),
@@ -37,19 +37,36 @@ class BookUploadView(CustomCreateView):
     success_url = reverse_lazy('library')
 
     def form_valid(self, form) :
-        form.instance.author = self.request.user
         return super().form_valid(form)
+
+def uploadbook(request):
+    books = Library.objects.all()
+    if request.method == 'POST':
+        bookname = request.POST['bookname']
+        bookauthor = request.POST['bookauthor']
+        payload = request.POST['payload']
+        category = request.POST['category']
+        synopsis = request.POST['synopsis']
+        try:
+            bookitem = Library(bookname=bookname,bookauthor=bookauthor,payload =payload,category = category,synopsis=synopsis)
+            bookitem.save()
+            return render(request, 'library.html',{'library':books})
+        except Exception as e:
+            print(e)
+            return render(request,'library.html',{'error':'could not upload book'})
+    return render(request,'upload.html',)
+    
 
 def search_product(request):
      if request.method == 'GET':
         query= request.GET.get('q')
-        print(query)
+        #print(query)
         
         if query is not None:
             lookups= Q(bookname__icontains=query) | Q(bookauthor__icontains=query)
 
             results= Library.objects.filter(lookups).distinct()
-            print(results)
+            #print(results)
 
             return render(request, 'ls.html', {'results':results})
 
@@ -57,5 +74,5 @@ def search_product(request):
             return render(request, 'ls.html')
 
      else:
-        print('jagba')
+        #print('jagba')
         return render(request, 'ls.html')

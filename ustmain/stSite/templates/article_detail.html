@@ -14,23 +14,16 @@
                 <p class="w3-xlarge">by {{ article_detail.author }}</p>
                 <p class="w3-large">{{ article_detail.body }}</p>
                 {% if article_detail.author %}
-                <div class="" style="display: flex;justify-content: end;">
-                    <p> <a href="{% url 'article_update' article_detail.pk %}" class="w3-btn w3-margin-right w3-right w3-round w3-ripple w3-purple">Edit</a></p>
-                <p> <a href="{% url 'article_delete' article_detail.pk %}" class="w3-btn w3-round w3-ripple w3-red">Delete</a></p>
-                </div>
+                    <div class="" style="display: flex;justify-content: end;">
+                        <p> <a href="{% url 'article_update' article_detail.pk %}" class="w3-btn w3-margin-right w3-right w3-round w3-ripple w3-purple">Edit</a></p>
+                    <p> <a href="{% url 'article_delete' article_detail.pk %}" class="w3-btn w3-round w3-ripple w3-red">Delete</a></p>
+                    </div>
                 {% endif %}
             </a>
     </div>
     {% if user.is_authenticated %}
-    <div class=" w3-text-purple w3-padding w3-margin-top w3-margin-bottom w3-xxlarge">Comments
-        <div>
-            <form   method="post">
-                {% csrf_token %} 
-                <input type="text" name="comment" id="comment" placeholder="Add comment" style="border: 2px solid purple;width: 60%;" class="w3-large w3-light-grey w3-round">
-                <button formaction="{% url 'comment' %}" type="submit" class="w3-button w3-circle w3-purple w3-ripple w3-xlarge w3-hover-purple">+</button>
-            </form>
-        </div>
-    </div>
+    <div class=" w3-text-purple w3-padding w3-margin-top w3-margin-bottom w3-xxlarge">Comments </div>
+    <div>Join the discussion. Add a comment <a class="w3-btn w3-purple" href="{% url 'comment'  article_detail.pk  %}">Comment</a></div>
     {% endif %}
     {% for comment in article_detail.comment.all %}
     <div class=" w3-padding  w3-display-center " style="border-top: 2px solid purple;">

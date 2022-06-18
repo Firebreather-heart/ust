@@ -3,20 +3,21 @@
 {% load static %} 
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <div class="w3-main w3-margin-top">
-    <form method="post" class="w3-main" style="max-width: 70%;">
+    <form method="post" enctype="multipart/form-data" class="w3-main" style="max-width: 70%;">
         <div class="w3-purple w3-round w3-margin-bottom w3-padding"><caption class="">share your thoughts with everyone</caption></div>
         <fieldset class="w3-container w3-border-purple w3-round">
             {% csrf_token %}
+            {{ form.nedia }}
             <label class="w3-text-purple">Give your write-up a caption</label>
-            <input type="text" name="title" id="title" class="w3-input w3-border w3-round">
+            <input type="text" required name="title" id="title" class="w3-input w3-border w3-round">
 
             <label class="w3-text-purple">Body</label>
-            <textarea type="text" name="body" id="body" class="w3-input w3-border w3-round" style="height: 20%;"></textarea>
+            <textarea type="text" required name="body" id="body" class="w3-input w3-border w3-round" style="height: 20%;"></textarea>
 
 
             <label class="w3-text-purple w3-margin-top">Add Header image</label>
             <br>
-            <input type="file" name="imgillustration" id="imgillustration" class="">  <br>
+            <input type="file" required  name="imgIllustration" id="imgIllustration" value="imgIllustration">  <br> 
 
             <p><button type="submit" class="w3-margin-top w3-margin-bottom w3-button w3-purple w3-hover-purple">Post</button></p>
         </fieldset>

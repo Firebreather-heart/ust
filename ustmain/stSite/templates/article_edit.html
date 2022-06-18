@@ -3,14 +3,15 @@
 {% load static %} 
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <div class="w3-content w3-display-center w3-margin-top">
-    <form method="post" class="w3-main" style="max-width: 70%;">
+    <form method="post" enctype="multipart/form-data" class="w3-main" style="max-width: 70%;">
         <fieldset class="w3-container w3-border-purple w3-round">
             {% csrf_token %}
+            {{ form.media }}
             <label class="w3-text-purple">Edit article</label>
-            <input type="text" name="title" id="title" class="w3-input w3-border w3-round">
+            <input type="text" required name="title" id="title" class="w3-input w3-border w3-round">
 
             <label class="w3-text-purple">Body</label>
-            <textarea type="text" name="body" id="body" class="w3-input w3-border w3-round" value="{{ article.body }}"></textarea>
+            <textarea type="text" required name="body" id="body" class="w3-input w3-border w3-round" value="{{ object.obj.body }}"></textarea>
 
 
             <label class="w3-text-purple w3-margin-top">Add Header image</label>

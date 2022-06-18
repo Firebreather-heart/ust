@@ -6,7 +6,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = ('username','email','date_of_birth','profile_pic','about')
-        widgets = {
+        widget = {
             'username':forms.TextInput(
                 attrs={
                     'placeholder':'Username','class':'w3-input w3-border w3-round','type':'text','name':'username',
@@ -32,7 +32,7 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = get_user_model()
         fields = ('username','email','date_of_birth','profile_pic','about')
-        widgets = {
+        widget = {
             'username':forms.TextInput(
                 attrs={
                     'placeholder':'Username','class':'w3-input w3-border w3-round','type':'text','name':'username',

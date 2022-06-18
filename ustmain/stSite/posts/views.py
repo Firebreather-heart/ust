@@ -12,7 +12,7 @@ from django.db.models import Q
 # Create your views here.
 class CustomCreateView(CreateView):
     class Meta:
-        widgets ={
+        widget ={
             'title':forms.TextInput(attrs={
                 'placeholder':'Title','class':'w3-input','type':'text'
             }),
@@ -21,7 +21,10 @@ class CustomCreateView(CreateView):
             }),
             'comment':forms.TextInput(attrs={
                 'placeholder':'Comment','class':'w3-input','type':'text','name':'comment','id':'comment',
-            })
+            }),
+            'id':forms.TextInput(attrs={
+                'type':'hidden','value':Article.id 
+            }),
         }
 
 def display(request):
@@ -54,6 +57,7 @@ class ArticleUpdateView(LoginRequiredMixin,UpdateView):
     template_name = 'article_edit.html'
     success_url = reverse_lazy('home')
     login_url = 'account_login'
+    context_object_name = 'object'
     
     def dispatch(self, request, *args, **kwargs) :
         obj = self.get_object()
@@ -76,7 +80,7 @@ class ArticleDeleteView(LoginRequiredMixin,DeleteView):
 class ArticleCreateView(LoginRequiredMixin,CustomCreateView):
     model = Article
     template_name = 'article_create.html'
-    fields = ('title', 'body','imgIllustration')
+    fields = ('title', 'body','imgIllustration',)
     success_url = reverse_lazy('home')
     login_url = 'account_login'
 
@@ -86,9 +90,9 @@ class ArticleCreateView(LoginRequiredMixin,CustomCreateView):
 
 class CommentView(LoginRequiredMixin,CustomCreateView):
     model = Comment 
-    template_name ='article_detail.html'
-    fields =('comment',)
-    success_url = reverse_lazy('home')
+    template_name ='comment.html'
+    fields =('comment','id')
+    success_url = reverse_lazy('article_detail')
     login_url = 'account_login'
     context_object_name = 'comment'
 
@@ -96,9 +100,14 @@ class CommentView(LoginRequiredMixin,CustomCreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+
+
 class ArticleDetailView(LoginRequiredMixin,DetailView,):
     model = Article
     template_name = 'article_detail.html'
     login_url = 'account_login'
     context_object_name = 'article_detail'
 
+def commentView(request,pk):
+    if request.POST:
+        pass

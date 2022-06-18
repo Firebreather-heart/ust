@@ -4,7 +4,7 @@
 {% load static %} 
 <div class="w3-padding w3-margin-top">
     <div class="w3-main w3-margin-top w3-padding w3-round-large " style="border: 2px solid purple;">
-        <p class="w3-panel w3-purple w3-round w3-large w3-mobile">To the making of books there is no end</p>
+        <p class="w3-panel w3-text-purple w3-round w3-xlarge w3-padding w3-mobile">To the making of books there is no end</p>
         <div class="w3-bar-item w3-mobile"><form action="{% url 'librarysearch' %}" method="get">
             {% csrf_token %}
             <input type="search" class="w3-input w3-border w3-round-large" style="width:90%;" name="q" id="id_q" placeholder="Library search">

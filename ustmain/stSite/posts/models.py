@@ -13,9 +13,9 @@ class Article(models.Model):
                 )
     title = models.CharField(max_length=1000)
     body = models.CharField(max_length=100000000000)
-    date = models.DateTimeField(default= datetime.now)
-    imgIllustration = models.ImageField(upload_to='media/',blank=True,null=True)
-    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    date = models.DateTimeField(default=datetime.now())
+    imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
+    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
 
     def __str__(self) -> str:
         return self.title
@@ -29,7 +29,7 @@ class Comment(models.Model):
             on_delete=models.CASCADE,
             related_name='comment',
     )
-    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
     date = models.DateTimeField(default= datetime.now)
     comment = models.CharField(max_length=10000)
 

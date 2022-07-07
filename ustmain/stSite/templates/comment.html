@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <div class="w3-padding-64">
     <div class="">
-        <form   method="post">
-            {% csrf_token %} 
+        <form action="{% url 'comment' article.pk %}"  method="post">
+            {% csrf_token %}
+            <input type="hidden" name="article_id" value="{{ article.id }}">
+            <input type="hidden" name="author_id" value="{{ article.author_id }}">
             <textarea type="text" name="comment" id="comment" placeholder="Add comment" style="border: 2px solid purple;width: 60%;" class="w3-large w3-padding w3-light-grey w3-round-xlarge"></textarea>
-            <p><button  type="submit" class="w3-button w3-round  w3-purple w3-ripple w3-small w3-hover-purple">comment</button></p>
+            <p><button  type="submit" class="w3-button w3-round  st-green w3-ripple w3-small w3-hover-green">comment</button></p>
         </form>
     </div>
 </div>

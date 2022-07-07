@@ -5,9 +5,10 @@ from django.views.generic import DetailView
 from django.urls import reverse_lazy,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from .models import Article,Comment
+from .models import Article,Comment,ArticlePrime
 from django import forms
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class CustomCreateView(CreateView):
@@ -30,7 +31,8 @@ class CustomCreateView(CreateView):
 def display(request):
     if request.method == 'GET':
         img = Article.objects.order_by('-date')
-        return render(request,'home.html',{'illustration':img})
+        weekly = ArticlePrime.objects.order_by('-date')[0]
+        return render(request,'home.html',{'illustration':img,'weekly':weekly})
 
 
 def search_product(request):
@@ -107,7 +109,17 @@ class ArticleDetailView(LoginRequiredMixin,DetailView,):
     template_name = 'article_detail.html'
     login_url = 'account_login'
     context_object_name = 'article_detail'
-
+    
+@login_required
 def commentView(request,pk):
+    article = Article.objects.get(pk=pk)
     if request.POST:
-        pass
+        author_id = article.author_id
+        article_id = article.id
+        print(author_id,article_id)
+        commt = request.POST.get('comment')
+        comment = Comment(comment=commt,article_id=article_id,author_id=author_id)
+        comment.save()
+        return render(request,'article_detail.html',{'comment':comment,'article':article,'article_detail':article})
+    return render(request,'article_detail.html',{'article':article,'article_detail':article})
+    

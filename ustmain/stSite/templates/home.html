@@ -2,30 +2,147 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
 {% load static %}
+<style>
+    @media screen and (max-width:562px) {
+        #wk img{
+            height: 500px;
+        }
+        #wkwk {
+            
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #rm{
+            background-color: green;
+            color: white;
+        }
+        
+  *{
+    box-sizing: border-box;
+  }
+  
+    }
+</style>
 <link rel="stylesheet" href="{%  static 'w3.css' %}">
 {% if user.is_authenticated %} 
     <div class="w3-container w3-padding w3-light-grey w3-margin">
         <p>
             What's on your mind, or rather in your spirit?
-            <a class="w3-btn w3-right w3-purple w3-hover-purple w3-round" href="{% url 'article_create' %}">Share</a></p>
+            <a class="w3-btn w3-right st-green w3-hover-green w3-round" id="share" href="{% url 'article_create' %}">Share</a></p>
+            <style>
+                @keyframes shake{
+                    0% {transform: rotate(-20deg);}
+                    25% {transform: rotate(20deg);}
+                    50% {transform: rotate(-20deg);}
+                    75% {transform: rotate(20deg);}
+                    100% {transform: rotate(0deg);}
+                }
+
+                #share{
+                    animation: shake 1s  2s 2  ;
+                }
+            </style>
     </div>
 {% endif %}
+<section style="padding-bottom: 100px; border-bottom:3px solid #eee;">
+    <div class="w3-content  w3-display-container w3-container " id="wk" style="margin: 10%;">
+        <div>
+            <img src="{%  static 'images/weekly.jpg' %}" alt="" class="" width="100%" height="500px">
+            <div class="w3-display-left w3-container w3-white " id="wkwk" style="width: 60%;height:80%;margin-left: 10%;">
+                <div class=" " style="text-transform: capitalize;margin-bottom: 10%;text-align: center;font-size: 2rem;">
+                    <p>{{ weekly.title }}</p>
+                </div>
+                <div class="w3-large" id="bdy">
+                    <script>
+                        wkbdy = "{{ weekly.body }}";
+                        wk=wkbdy.slice(0,200);
+                        document.getElementById("bdy").innerText = wk + "...";
+                    </script>
+                </div>
+                <div>
+                    <a class="w3-button st-green w3-hover-green w3-display-bottomleft " id="rm" style="border: 1px solid var(--st-grn); text-transform: capitalize;font-weight: 800;">Read More</a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>
 {% for article in illustration %}
-<div class=" w3-content w3-margin-bottom w3-border w3-round-large "  style="max-width: 1200px;">
-        <div class="w3-display-container w3-text-white w3-center">
-                {% if article.imgIllustration %}
-                <img src="{{ article.imgIllustration.url }}" class="" alt="" width="100%" style="max-width: 1200px;"/>
-                {% endif %}
-                <div class="w3-xlarge w3-display-bottomleft w3-padding">{{ article.date }}</div>
+    <section class="post-box w3-content w3-mobile">
+        <style>
+            @media screen and (max-width:650px) {
+                #wkw{
+                    display: flex;
+                    flex-direction: column-reverse;
+                }
+                #wkwkw{
+                    width: 100%;
+                    height: 100%;
+                }
+                #bdyd{
+                    width: 100%;
+                    height: 100%;
+                }
+                #wkimg{
+                    width: 400px;
+                }
+                .big-bo{
+                    display: block;
+                    margin-top: 1%;
+                }
+                #null{
+                    width: 0px;
+                }
+                #shady{
+                    width: 300px;
+                }
+                .post-box{
+                    margin-top: 20px;
+                    border-bottom: 3px solid #eee;
+                    padding-bottom: 20px;
+  }
+            }
+        </style>
+        <div class="big-bo" id="wkw" style="margin: 10%;width: 100%;">
+                <div class="" id="wkwkw" style="width: 45%;margin-left: 0;height: 400px;">
+                    <div style="width: 100%;display: block;justify-content: space-between;">
+                        <div style="overflow:hidden;height:350px;width: 100%;">
+                            <div class="" style="text-transform: capitalize;margin-bottom: 10%;text-align: center;font-size: 2rem;">
+                                <p>{{ article.title }}</p>
+                            </div>
+                            <div class="" id="bdyd" style="text-align: center;">{{ article.body }}
+                                <script>
+                                    wky = "{{ article.body }}";
+                                    wky=wky.slice(0,800);
+                                    document.getElementById("bdyd").innerText = wky + "...";
+                                </script>
+                            </div>
+                        </div>
+                        <div class="w3-display-center" style="align-self:center;">
+                            <a href="{% url 'article_detail' article.pk %}" class="w3-button st-green w3-hover-green  " id="rm" style="border: 1px solid var(--st-grn); text-transform: capitalize;font-weight: 800;">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="null" style="width: 10%;">
+                </div>
+                <div id="wkimg" class="" style="width: 45%;display: block;">
+                    {% if article.imgIllustration %}
+                    <img src="{{ article.imgIllustration.url }}" class="" alt="" id="shady" style="max-width: 800px;width: 100%;"/>
+                    {% endif %}
+                </div>
+                <style>
+                    .big-bo{
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+                    #shady{
+                        align-self: center !important;
+                    }
+                </style>
         </div>
-        <div class="w3-card w3-padding "><a >
-                    <p class=" w3-xxxlarge">{{ article.title }}</p>
-                    <p class="w3-large">-by {{ article.author }} <a href="{% url 'article_detail' article.pk %}" class="w3-btn w3-round w3-purple w3-right">Read more</a></p>
-                </a>
-        </div>
-            
-        </div>
-</div>
+    </div>
+    </section>
+    
 {% endfor %}
 <div class="w3-padding-64 w3-light-grey w3-small w3-margin">
     <div class="w3-row-padding">
@@ -40,5 +157,4 @@
         </div>
     </div>
 </div>
-
 {% endblock content %}

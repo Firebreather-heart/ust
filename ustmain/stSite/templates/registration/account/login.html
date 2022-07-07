@@ -2,15 +2,17 @@
 {% block title %}Log In{% endblock title %}
 {% block content %}
 {% load static %} 
-<h2 class="w2-card-4 w3-text-purple">Log In</h2>
+<div class="w3-content">
+    <h2 class="w2-card-4 st-text-green">Log In</h2>
 <form method="post" class="w3-container">
     {% csrf_token %}
-    <label class="w3-text-purple">Email</label>
-    <input type="text"  name="login" class="w3-input w3-border">
+    <label class="st-text-green">Email</label>
+    <input type="email"  name="login" class="w3-input w3-border">
 
-    <label class="w3-text-purple">Password</label>
+    <label class="st-text-green">Password</label>
     <input type="password" name="password"  class="w3-input w3-border">
 
-    <button class="w3-btn w3-purple w3-round-large w3-margin-top w3-border" type="submit">Log In</button>
+    <button class="w3-btn st-green w3-round-large w3-margin-top w3-border" type="submit">Log In</button>
 </form>
+</div>
 {% endblock content %}

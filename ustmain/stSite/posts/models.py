@@ -22,6 +22,23 @@ class Article(models.Model):
     def get_absolute_url(self): 
         return reverse('article_detail', args=[str(self.id)])
 
+class ArticlePrime(models.Model):
+    id = models.UUIDField( 
+                primary_key=True,
+                default=uuid.uuid4,
+                editable=False
+                )
+    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
+    title = models.CharField(max_length=1000)
+    body = models.CharField(max_length=100000000000)
+    date = models.DateTimeField(default=datetime.now())
+    imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
+
+    def __str__(self) -> str:
+        return self.title
+    class Meta:
+        verbose_name_plural = 'Article of the week'
+    
 
 class Comment(models.Model):
     article = models.ForeignKey(
@@ -29,7 +46,7 @@ class Comment(models.Model):
             on_delete=models.CASCADE,
             related_name='comment',
     )
-    author = models.ForeignKey(get_user_model(),on_delete=models.PROTECT)
+    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     date = models.DateTimeField(default= datetime.now)
     comment = models.CharField(max_length=10000)
 

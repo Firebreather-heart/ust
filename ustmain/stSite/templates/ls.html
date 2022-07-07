@@ -7,14 +7,14 @@
     <input type="search" class="w3-input w3-border w3-round-large" style="width:100%;" name="q" id="id_q" placeholder="Library search">
   </form></div>
 {% if results %}
-<h1 class="w3-padding w3-text-purple">Library Search Results</h1>
+<h1 class="w3-padding w3-text-green">Library Search Results</h1>
 {% for book in results %}
 <div class="w3-card-4 w3-padding w3-light-grey w3-round">
-    <p class="w3-panel w3-xlarge w3-purple">{{ book.bookname }}</p>
+    <p class="w3-panel w3-xlarge st-green">{{ book.bookname }}</p>
     <p>Author:       {{ book.bookauthor }}</p>
     <p>Category:     {{ book.category }}</p>
     <p>Synopsis:     {{ book.synopsis }}</p>
-    <a class="w3-btn w3-round w3-purple w3-hover-purple w3-ripple" href="{{ book.payload.url }}" value="{{ book.bookname }}" download>Download now</a>
+    <a class="w3-btn w3-round st-green w3-hover-green w3-ripple" href="{{ book.payload.url }}" value="{{ book.bookname }}" download>Download now</a>
 </div>
 {% endfor %}
 {% else %} 

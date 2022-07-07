@@ -9,36 +9,92 @@
     {% load socialaccount %}
     <link rel="stylesheet" href="{% static 'css/w3.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<body>
+<style>
+  :root{
+    --st-grn:rgb(15, 75, 15)
+  }
+  *{
+    box-sizing: border-box;
+  }
+  .st-green{
+      background-color: var(--st-grn)!important;
+      color: white!important;
+    }
+    .st-text-green{
+      color: var(--st-grn)!important;
+    }
+  body{
+    background-color: white;
+  }
+  @media screen and (min-width:1200px) {
+    #id_q{
+      transform: translateY(10px);
+    }
+  .post-box{
+    margin-top: 100px;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 100px;
+  }
+  }
+</style>
 </head>
 <body>
-        <div class="w3-sidebar w3-round w3-padding w3-mobile w3-purple w3-bar-block w3-collapse w3-card w3-animate-right" style="width:10%;right:0;" id="mySidebar">
-            <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+  <div class="w3-sidebar st-green w3-bar-block w3-border-right w3-display-left" style="display:none" id="mySidebar">
+    <div class="w3-padding">
+      <button onclick="w3_close()" class="w3-bar-item w3-green w3-btn w3-hover-white w3-large">Close &times;</button>
             {% if user.is_authenticated %} 
                 <p><b>Calvary greetings {{ user.username }}</b> </p>
-                <p><a href="{% url 'library' %}" class=" w3-btn w3-purple w3-round ">Library</a></p>
-                <p><a href="" class="w3-btn w3-purple w3-round ">About</a></p>
-                <a href="{% url 'account_logout' %}" class="w3-btn w3-purple  w3-round-large">Log out</a>
+                <p><a href="{% url 'library' %}" class=" w3-btn   ">Library</a></p>
+                <p><a href="" class="w3-btn   ">About</a></p>
+                <a href="{% url 'account_logout' %}" class="w3-btn   ">Log out</a>
             {% else %} 
                 <p><b>you are not logged in</b></p>
-                <p>  <a href="{% url 'account_login' %}" class="w3-btn  w3-purple w3-round-large">Log in</a></p>
-                <a href="{% provider_login_url 'google' %}"  class="w3-btn  w3-purple w3-round-large">Login With Google</a>
-                <p> <a href="{% url 'account_signup' %}" class="w3-btn  w3-purple w3-round-large">Sign up</a></p>
+                <p>  <a href="{% url 'account_login' %}" class="w3-btn   ">Log in</a></p>
+                <a href="{% provider_login_url 'google' %}"  class="w3-btn   ">Login With Google</a>
+                <p> <a href="{% url 'account_signup' %}" class="w3-btn   ">Sign up</a></p>
             {% endif %}
-        </div>
-        <div class="w3-main" style="margin-right:10.2%;top:0;">
-          <div class="w3-purple w3-round">
-            <button class="w3-button w3-purple w3-border w3-border-white w3-xlarge w3-right w3-hide-large" onclick="w3_open()">&#9776;</button>
-            <div class="w3-bar">
-              <div class="w3-image w3-bar-item"><a href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" alt="" class="w3-circle" width="100px"></a></div>
-              <h1 class="w3-bar-item w3-xxxlarge"><b>Ultimate Salvation Ministries</b></h1>
-              <p><h3 class="w3-animate-fading w3-bar-item">Holiness Unto The Lord</h3></p>
-              <div class="w3-bar-item w3-mobile"><form action="{% url 'search' %}" method="get">
-                {% csrf_token %}
-                <input type="search" class="w3-input w3-border w3-round-large" style="width:100%;" name="q" id="id_q" placeholder="search">
-              </form></div>
-              
-            </div>
+    </div>
+  </div>
+        <div class="w3-mobile" style="top:0;">
+          <div class="w3-bar w3-mobile" style="background-color: rgb(15, 75, 15); color:white">
+            <div class="w3-image w3-bar-item w3-right "><a href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" alt="" id="rolling" class="w3-circle" width="100px"></a></div>
+            <button class="w3-button st-green w3-hover-green w3-padding w3-round w3-bar-item w3-border w3-border-white w3-xxlarge  w3-opacity " style="position: fixed;top:3%;" onclick="w3_open()">&#9776;</button>  
+            <div class="w3-display-container w3-card w3-bar-item"><div class="" style="width: 20%;"></div></div>
+            <h1 class="w3-bar-item w3-xxxlarge w3-margin-left"><b>Ultimate Salvation Ministries</b></h1>
+            <div class="w3-bar-item w3-mobile"><form action="{% url 'search' %}" method="get">
+              {% csrf_token %}
+              <input type="search" class="w3-input w3-border w3-round-large" style="width:100%;" name="q" id="id_q" placeholder="search">
+            </form></div>
+            <style>
+              @keyframes spinning{
+                0% {transform: rotate(0deg);}
+                50% {transform: rotate(180deg);}
+                100% {transform: rotate(360deg);}
+              }
+              @-webkit-keyframes spinning{
+                0% {transform: rotate(0deg);}
+                100% {transform: rotate(360deg);}
+              }
+              @-moz-keyframes spinning{
+                0% {transform: rotate(0deg);}
+                100% {transform: rotate(360deg);}
+              }
+              #rolling{
+                animation-name: spinning;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+
+                -webkit-animation-name: spinning;
+                -webkit-animation-duration: 5s;
+                -webkit-animation-iteration-count: infinite;
+
+                -moz-animation-name: spinning;
+                -moz-animation-duration: 5s;
+                -moz-animation-iteration-count: infinite;
+              }
+            </style>
+           
+            
           </div>
       </div>
     <div class="w3-content" style="max-width: 1200px;" >
@@ -46,14 +102,14 @@
         {% endblock content %}
     </div>
     <script>
-        function w3_open() {
-          document.getElementById("mySidebar").style.display = "block";
-          document.getElementById("mySidebar").style.width = "50%";
-        }
-        
-        function w3_close() {
-          document.getElementById("mySidebar").style.display = "none";
-        }
-        </script>
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+      }
+      
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+      }
+      </script>
+      
 </body>
 </html>

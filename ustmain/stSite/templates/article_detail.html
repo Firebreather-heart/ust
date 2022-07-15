@@ -2,16 +2,16 @@
 {% block title %}{{article_detail.title}}{% endblock title %}
 {% load static %}
 {% block content %}
-<div class=" w3-card-4 w3-margin-bottom w3-margin-top  w3-round-large " style="border-color: st-green;border-width: 2px;border-style: solid;">
-    <div class="w3-display-container w3-text-white w3-center">
-            {% if article_detail.imgIllustration %}
-                <img src="{{ article_detail.imgIllustration.url }}" class="" alt="" width="100%" style="max-width: 1200px;"/>
-            {% endif %}
-            <div class="w3-xlarge w3-display-bottomleft w3-padding">{{ article_detail.date }}</div>
-    </div>
+<div class="w3-display-container w3-margin-top w3-text-white w3-center">
+    {% if article_detail.imgIllustration %}
+        <img src="{{ article_detail.imgIllustration.url }}" class="" alt="" width="100%" style="max-width: 1200px;"/>
+    {% endif %}
+    <div class="w3-xlarge w3-display-bottomleft w3-padding">{{ article_detail.date }}</div>
+</div>
+<div class=" w3-card-4 w3-margin-bottom w3-margin-top  w3-round-large " style="border-color: st-green;border-width: 0px;border-style: solid;">
     <div class="w3-card w3-padding "><a >
-                <p class=" w3-xxxlarge" >{{ article_detail.title }}</p>
-                <p class="w3-xlarge">by {{ article_detail.author }}</p>
+                <p class=" w3-xxxlarge" >{{ article_detail.title }} <p class="w3-xlarge">by {{ article_detail.author }}</p></p>
+                
                 <p class="w3-large">{{ article_detail.body }}</p>
                 {% if user is article_detail.author %}
                     <div class="" style="display: flex;justify-content: end;">
@@ -21,25 +21,26 @@
                 {% endif %}
             </a>
     </div>
+</div>
     {% if user.is_authenticated %}
-    <div class=" w3-text-st-green w3-padding w3-margin-top w3-margin-bottom w3-xxlarge">Comments </div>
-    <div>Join the discussion. Add a comment</div>
-    <div class="w3-padding-64">
+    <div class=" w3-text-st-green w3-padding w3-margin-left w3-margin-bottom w3-xxlarge">Comments </div>
+    <div class="w3-margin-left">Join the discussion. Add a comment</div>
+    <div class="w3-padding-64 w3-margin-left">
         <div class="">
             <form action="{% url 'comment' article_detail.pk %}"  method="post">
                 {% csrf_token %}
                 <textarea type="text" name="comment" id="comment" placeholder="Add comment" style="border: 2px solid st-green;width: 60%;" class="w3-large w3-padding w3-light-grey w3-round-xlarge"></textarea>
-                <p><button  type="submit" class="w3-button w3-round  st-green w3-ripple w3-small w3-hover-st-green">comment</button></p>
+                <p><button  type="submit" class="w3-button w3-round  st-green w3-ripple w3-small w3-hover-green">comment</button></p>
             </form>
         </div>
     </div>
     {% endif %}
     {% for comment in article_detail.comment.all %}
-    <div class=" w3-padding  w3-display-center " style="border-top: 2px solid st-green;">
+    <div class=" w3-padding  w3-display-center w3-round-xxlarge w3-margin " style="border: 2px solid var(--st-grn);">
         <p class="w3-xxlarge w3-text-st-green" style="text-transform:capitalize;">{{ comment.author}}</p>
         <p class="w3-xlarge">{{ comment.comment }}</p>
     </div>
     {% endfor %} 
     
-</div>
+
 {% endblock content %}

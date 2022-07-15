@@ -4,22 +4,22 @@
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <div class="w3-main w3-margin-top">
     <form method="post" enctype="multipart/form-data" class="w3-main" style="max-width: 70%;">
-        <div class="w3-purple w3-round w3-margin-bottom w3-padding"><caption class="">share your thoughts with everyone</caption></div>
-        <fieldset class="w3-container w3-border-purple w3-round">
+        <div class="st-green w3-round w3-margin-bottom w3-padding"><caption class="">share your thoughts with everyone</caption></div>
+        <fieldset class="w3-container  w3-round" style="border: 2px solid var(--st-grn);">
             {% csrf_token %}
             {{ form.media }}
-            <label class="w3-text-purple">Give your write-up a caption</label>
+            <label class="" style="color: var(--st-grn);">Give your write-up a caption</label>
             <input type="text" required name="title" id="title" class="w3-input w3-border w3-round">
 
-            <label class="w3-text-purple">Body</label>
+            <label style="color: var(--st-grn);">Body</label>
             <textarea type="text" required name="body" id="body" class="w3-input w3-border w3-round" style="height: 20%;"></textarea>
 
 
-            <label class="w3-text-purple w3-margin-top">Add Header image</label>
+            <label class=" w3-margin-top" style="color: var(--st-grn);">Add Header image</label>
             <br>
             <input type="file" required  name="imgIllustration" id="imgIllustration" value="imgIllustration">  <br> 
 
-            <p><button type="submit" class="w3-margin-top w3-margin-bottom w3-button w3-purple w3-hover-purple">Post</button></p>
+            <p><button type="submit" class="w3-margin-top st-green w3-margin-bottom w3-button  w3-hover-green">Post</button></p>
         </fieldset>
     </form>
 </div>

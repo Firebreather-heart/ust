@@ -5,7 +5,7 @@ from django.views.generic import DetailView
 from django.urls import reverse_lazy,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from .models import Article,Comment,ArticlePrime
+from .models import Article,Comment,ArticlePrime,Profile
 from django import forms
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required

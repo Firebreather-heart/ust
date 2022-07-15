@@ -54,3 +54,12 @@ class Comment(models.Model):
         return self.comment
     def get_absolute_url(self): 
         return reverse('comment', args=[str(self.id)])
+
+class Profile(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, )
+    profile_pic = models.FileField(upload_to='media/profiles/',default='media/profiles/img_avatar2.png')
+    age = models.SmallIntegerField()
+    address = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return super().__str__('profile')

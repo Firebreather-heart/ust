@@ -1,1 +1,1 @@
-web: gunicorn stsite.wsgi:application --pythonpath  stsite --log-file -
+web: python manage.py runserver 0.0.0.0:9009

@@ -1,0 +1,97 @@
+:root{
+    --st-grn:rgb(15, 75, 15)
+  }
+*{
+    box-sizing: border-box;
+  }
+.st-green{
+      background-color: var(--st-grn);
+      color: white;
+    }
+.post-box{
+        margin-top: 100px;
+        border-bottom: 3px solid #eee;
+        padding-bottom: 100px;
+      }
+@media screen and (max-width:562px) {
+        #wk img{
+            height: 500px;
+        }
+#wkwk {
+            
+        overflow: hidden;
+        text-overflow: ellipsis;
+        }
+#rm{
+    background-color: green;
+    color: white;
+        }
+    }
+    
+@keyframes shake{
+        0% {transform: rotate(-20deg);}
+        25% {transform: rotate(20deg);}
+        50% {transform: rotate(-20deg);}
+        75% {transform: rotate(20deg);}
+        100% {transform: rotate(0deg);}
+    }
+@-moz-keyframes shake{
+    0% {transform: rotate(-20deg);}
+    25% {transform: rotate(20deg);}
+    50% {transform: rotate(-20deg);}
+    75% {transform: rotate(20deg);}
+    100% {transform: rotate(0deg);}
+}
+@-webkit-keyframes shake{
+    0% {transform: rotate(-20deg);}
+    25% {transform: rotate(20deg);}
+    50% {transform: rotate(-20deg);}
+    75% {transform: rotate(20deg);}
+    100% {transform: rotate(0deg);}
+}
+
+#share{
+    animation: shake 1s  2s 2  ;
+    -webkit-animation: shake 1s  2s 2 ;
+    -moz-animation: shake 1s  2s 2 ;
+    }
+.big-bo{
+        display: flex;
+        flex-wrap: wrap;
+    }
+#shady{
+        align-self: center !important;
+    }
+    
+@media screen and (max-width:650px) {
+        #wkw{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        #wkwkw{
+            width: 100%;
+            height: 100%;
+        }
+        #bdyd{
+            width: 100%;
+            height: 100%;
+        }
+        #wkimg{
+            width: 400px;
+        }
+        .big-bo{
+            display: block;
+            margin-top: 1%;
+        }
+        #null{
+            width: 0px;
+        }
+        #shady{
+            width: 300px;
+        }
+        .post-box{
+            margin-top: 20px;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 20px;
+        }
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Library{% endblock title %}
+{% block content %}
+{% load static %}
+<div class="w3-content w3-margin-top  " style="border: 2px solid var(--st-grn);">
+    <p class="w3-panel st-green w3-padding w3-xlarge">To the making of books there is no end</p>
+
+    <div class="w3-content w3-padding">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p><label for="bookname">Bookname</label> <input type="text" class="w3-input w3-border w3-round"
+                    name="bookname" maxlength="100" required="" id="bookname"></p>
+            <p><label for="bookauthor">Bookauthor</label> <input type="text" class="w3-input w3-border w3-round"
+                    name="bookauthor" maxlength="100" required="" id="bookauthor"></p>
+            <p><label for="category">Category</label> <input type="text" class="w3-input w3-border w3-round"
+                    name="category" maxlength="100" required="" id="category"></p>
+            <p><label for="synopsis">Synopsis</label><textarea class="w3-input w3-border w3-round" type="text"
+                    name="synopsis" maxlength="1000" id="synopsis"></textarea></p>
+
+            <p><input type="file" value="upload" name="payload" id="payload"></p>
+
+            <button type="submit" class="w3-btn st-green w3-ripple w3-hover-green w3-round">Upload</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

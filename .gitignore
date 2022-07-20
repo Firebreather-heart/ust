@@ -1,2 +1,6 @@
-.pyc
-
+*.pyc
+Pipfile.lock
+package.json
+Pipfile
+*.pdf
+*.epub

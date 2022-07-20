@@ -11,6 +11,7 @@ django-allauth = "*"
 pillow = "*"
 gunicorn = "*"
 whitenoise = "*"
+django-heroku = "*"
 
 [dev-packages]
 

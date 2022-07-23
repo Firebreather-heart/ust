@@ -12,7 +12,7 @@ class Article(models.Model):
                 editable=False
                 )
     title = models.CharField(max_length=1000)
-    body = models.CharField(max_length=100000000000)
+    body = models.CharField(max_length=10000000)
     date = models.DateTimeField(default=datetime.now())
     imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
@@ -30,7 +30,7 @@ class ArticlePrime(models.Model):
                 )
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
     title = models.CharField(max_length=1000)
-    body = models.CharField(max_length=100000000000)
+    body = models.CharField(max_length=10000000)
     date = models.DateTimeField(default=datetime.now())
     imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
 

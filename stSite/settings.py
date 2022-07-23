@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os, dj_database_url, django_heroku, dotenv
 
-db_from_env = dj_database_url.config(conn_max_age=600)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,7 +96,7 @@ WSGI_APPLICATION = 'stSite.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {}
-DATABASES['default'].update(db_from_env)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 #DATABASES = {

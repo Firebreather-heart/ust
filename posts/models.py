@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from datetime import datetime
@@ -13,7 +14,7 @@ class Article(models.Model):
                 )
     title = models.CharField(max_length=1000)
     body = models.CharField(max_length=10000000)
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(default=timezone.now)
     imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
 
@@ -31,7 +32,7 @@ class ArticlePrime(models.Model):
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
     title = models.CharField(max_length=1000)
     body = models.CharField(max_length=10000000)
-    date = models.DateTimeField(default=datetime.now())
+    date = models.DateTimeField(default=timezone.now)
     imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
 
     def __str__(self) -> str:
@@ -47,7 +48,7 @@ class Comment(models.Model):
             related_name='comment',
     )
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
-    date = models.DateTimeField(default= datetime.now)
+    date = models.DateTimeField(default= timezone.now)
     comment = models.CharField(max_length=10000)
 
     def __str__(self) -> str:

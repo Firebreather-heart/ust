@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os, dj_database_url, django_heroku, dotenv
 
+from dotenv import load_dotenv
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,8 +26,8 @@ if os.path.isfile(dotenv_file):dotenv.load_dotenv(dotenv_file)
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-eydz+eoq3wa@80@don44y5dm&8++m415t$i@129i$9iii9&t6n'
 
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -95,19 +98,19 @@ WSGI_APPLICATION = 'stSite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+#DATABASES = {}
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-#DATABASES = {
-#    'default': {
-#    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#    'NAME': 'ultimate',
-#    'USER': 'ustadmin',
- #   'PASSWORD': 'firefire',
-#    'HOST': 'localhost',
- #   'PORT': '',
-#}}
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'ultimate',
+    'USER': 'ustadmin',
+    'PASSWORD': 'firefire',
+    'HOST': 'localhost',
+    'PORT': '',
+}}
 
 
 # Password validation
@@ -188,6 +191,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 
 django_heroku.settings(locals())
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 JAZZMIN_SETTINGS = {

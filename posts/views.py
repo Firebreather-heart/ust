@@ -37,6 +37,7 @@ def display(request):
             render(request,'home.html',{'illustration':img,})
         else:
             return render(request,'home.html',{'illustration':img,'weekly':weekly})
+        return render(request,'home.html',{'illustration':img,})
 
 
 def search_product(request):

@@ -31,7 +31,10 @@ class CustomCreateView(CreateView):
 def display(request):
     if request.method == 'GET':
         img = Article.objects.order_by('-date')
-        weekly = ArticlePrime.objects.order_by('-date')[0]
+        try:
+            weekly = ArticlePrime.objects.order_by('-date')[0]
+        except:
+            render(request,'home.html',{'illustration':img,})
         return render(request,'home.html',{'illustration':img,'weekly':weekly})
 
 

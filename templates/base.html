@@ -50,7 +50,7 @@
             {% else %} 
                 <p><b>you are not logged in</b></p>
                 <p>  <a href="{% url 'account_login' %}" class="w3-btn   ">Log in</a></p>
-                <a href="{% provider_login_url 'google' %}"  class="w3-btn   ">Login With Google</a>
+                <a href="{% provider_login_url 'google' %}" style="display: none;"  class="w3-btn   ">Login With Google</a>
                 <p> <a href="{% url 'account_signup' %}" class="w3-btn   ">Sign up</a></p>
             {% endif %}
     </div>

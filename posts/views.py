@@ -35,7 +35,8 @@ def display(request):
             weekly = ArticlePrime.objects.order_by('-date')[0]
         except:
             render(request,'home.html',{'illustration':img,})
-        return render(request,'home.html',{'illustration':img,'weekly':weekly})
+        else:
+            return render(request,'home.html',{'illustration':img,'weekly':weekly})
 
 
 def search_product(request):

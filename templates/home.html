@@ -2,6 +2,7 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
 {% load static %}
+
 <style>
     @media screen and (max-width:562px) {
         #wk img{
@@ -68,19 +69,29 @@
     </div>
 </section>
 {% for article in illustration %}
-    <div class="post-box w3-content w3-mobile">
+    <div class="post-box ">
         <style>
+            .wkwkw{
+                width: 45%;
+                margin-left: 10%;
+                height: 400px;
+            }
+            #wkimg{
+                width: 45%;
+                display: block;
+            }
             @media screen and (max-width:650px) {
                 #wkw{
                     display: flex;
                     flex-direction: column-reverse;
                 }
                 #wkwkw{
-                    width: 100%;
+                    width: 400px;
                     height: 100%;
+                    margin: auto;
                 }
                 #bdyd{
-                    width: 100%;
+                    width: 400px;
                     height: 100%;
                 }
                 #wkimg{
@@ -89,6 +100,7 @@
                 .big-bo{
                     display: block;
                     margin-top: 1%;
+                    padding: 25px;
                 }
                 #null{
                     width: 0px;
@@ -103,11 +115,48 @@
                     
   }
             }
+            @media screen and (max-width:500px) {
+                #wkw{
+                    display: flex;
+                    flex-direction: column-reverse;
+                }
+                #wkwkw{
+                    width: 350px;
+                    height: 100%;
+                    margin: auto;
+                }
+                #bdyd{
+                    width: 350px;
+                    height: 100%;
+                }
+                #wkimg{
+                    width: 350px;
+                }
+            }
+            @media screen and (max-width:400px) {
+                #wkw{
+                    display: flex;
+                    flex-direction: column-reverse;
+                }
+                #wkwkw{
+                    width: 300px;
+                    height: 100%;
+                    margin: auto;
+                }
+                #bdyd{
+                    width: 300px;
+                    height: 100%;
+                }
+                #wkimg{
+                    width: 300px;
+                }
+            }
         </style>
-        <div class="big-bo" id="wkw" style="margin: 10%;width: 100%;">
-                <div class="" id="wkwkw" style="width: 45%;margin-left: 0;height: 400px;">
+        
+        <div class="big-bo" id="wkw" style="margin-left: 0;width: 100%;">
+                <div class="" id="wkwkw">
                     <div style="width: 100%;display: block;justify-content: space-between;">
-                        <div style="overflow:hidden;height:350px;width: 100%;">
+                        <div style="overflow:hidden;height:350px;width: 100%;" id="both">
                             <div class="" style="text-transform: capitalize;margin-bottom: 10%;text-align: center;font-size: 2rem;">
                                 <p>{{ article.title }}</p>
                             </div>
@@ -126,7 +175,7 @@
                 </div>
                 <div id="null" style="width: 10%;">
                 </div>
-                <div id="wkimg" class="" style="width: 45%;display: block;">
+                <div id="wkimg" class="" >
                     {% if article.imgIllustration %}
                     <img src="{{ article.imgIllustration.url }}" class="" alt="" id="shady" style="max-width: 800px;width: 100%;"/>
                     {% endif %}
@@ -143,9 +192,9 @@
         </div>
     </div>
 </div>
-    
+  
 {% endfor %}
-<div class="w3-padding-64 w3-light-grey w3-small w3-margin">
+<div class=" w3-mobile w3-padding-64 w3-light-grey w3-small w3-margin">
     <div class="w3-row-padding">
         <div class="w3-col s4">
             <h3>CONTACT US</h3>

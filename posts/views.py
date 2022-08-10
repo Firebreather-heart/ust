@@ -28,6 +28,7 @@ class CustomCreateView(CreateView):
             }),
         }
 
+@login_required
 def display(request):
     if request.method == 'GET':
         img = Article.objects.order_by('-date')

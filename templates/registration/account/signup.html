@@ -6,14 +6,18 @@
 <h2 class="w2-card-4 st-text-green">Sign Up</h2>
 <div class="">
     <form method="post"  class="w3-container w3-padding " style="width: 100%;">
+        {{ form.non_field_errors }}
         <fieldset>
             {% csrf_token %}
+            {{ form.email.errors }}
             <label for="" class="w3-text">E-mail</label>
             <input type="email" name="email" id="id_email" autocomplete="email" class="w3-input w3-border w3-round" required>
-    
+            
+            {{ form.password.errors}}
             <label for="">Password</label>
             <input type="password" name="password1" id="id_password1" autocomplete="new-password" required class="w3-input w3-border w3-round">
-    
+            
+            {{ form.password.errors}}
             <label for="">Confirm Password</label>
             <input type="password" name="password2" id="id_password2" autocomplete="new-password" class="w3-input w3-border w3-round" required>
             

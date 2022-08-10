@@ -26,6 +26,11 @@
   body{
     background-color: white;
   }
+  .post-box{
+    margin-top: 100px;
+    border-bottom: 3px solid #eee;
+    padding-bottom: 100px;
+  }
   @media screen and (min-width:1200px) {
     #id_q{
       transform: translateY(10px);
@@ -56,7 +61,7 @@
     </div>
   </div>
         <div class="w3-mobile" style="top:0;">
-          <div class="w3-bar w3-mobile" style="background-color: rgb(15, 75, 15); color:white">
+          <div class="w3-bar w3-mobile" style="background-color: rgb(15, 75, 15); color:white;margin: 0px;">
             <div class="w3-image w3-bar-item w3-right "><a href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" alt="" id="rolling" class="w3-circle" width="100px"></a></div>
             <button class="w3-button st-green w3-hover-green w3-padding w3-round w3-bar-item w3-border w3-border-white w3-xxlarge  w3-opacity " style="position: fixed;top:3%;" onclick="w3_open()">&#9776;</button>  
             <div class="w3-display-container w3-card w3-bar-item"><div class="" style="width: 20%;"></div></div>

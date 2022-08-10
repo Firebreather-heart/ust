@@ -13,7 +13,7 @@ class Article(models.Model):
                 editable=False
                 )
     title = models.CharField(max_length=1000)
-    body = models.CharField(max_length=10000000)
+    body = models.TextField(max_length=10000000)
     date = models.DateTimeField(default=timezone.now)
     imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
@@ -31,7 +31,7 @@ class ArticlePrime(models.Model):
                 )
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,default=1)
     title = models.CharField(max_length=1000)
-    body = models.CharField(max_length=10000000)
+    body = models.TextField(max_length=100000)
     date = models.DateTimeField(default=timezone.now)
     imgIllustration = models.FileField(upload_to='media/',default='media/logo.jpg')
 
@@ -49,7 +49,7 @@ class Comment(models.Model):
     )
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     date = models.DateTimeField(default= timezone.now)
-    comment = models.CharField(max_length=10000)
+    comment = models.CharField(max_length=1000)
 
     def __str__(self) -> str:
         return self.comment
